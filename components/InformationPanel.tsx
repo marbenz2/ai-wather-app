@@ -4,17 +4,19 @@ import CityPicker from "./CityPicker";
 import weatherCodeToString from "@/lib/weatherCodeToString";
 
 type Props = {
+  country: string;
   city: string;
   lat: string;
   long: string;
   results: Root;
 };
 
-function InformationPanel({ city, lat, long, results }: Props) {
+function InformationPanel({ country, city, lat, long, results }: Props) {
   return (
-    <div className="bg-gradient-to-br from-[#394F68] to-[#18387E] text-white p-10">
+    <div className="bg-gradient-to-br from-[#394F68] to-[#18387E] text-white p-2 md:p-10">
       <div className="pb-5">
-        <h1 className="text-6xl font-bold">{decodeURI(city)}</h1>
+        <h1 className="text-6xl font-bold mb-4">{decodeURI(city)}</h1>
+        <p className="text-xs text-gray-400">Country: {country}</p>
         <p className="text-xs text-gray-400">
           Long/Lat: {long}, {lat}
         </p>
@@ -24,25 +26,25 @@ function InformationPanel({ city, lat, long, results }: Props) {
       <div className="mt-5 flex items-center justify-between space-x-10 mb-5">
         <div>
           <p className="text-xl">
-            {new Date().toLocaleDateString("de-DE", {
+            {new Date().toLocaleDateString("en-US", {
               weekday: "long",
               year: "numeric",
               month: "long",
               day: "numeric",
             })}
           </p>
+          <p className="text-xl">
+            {/*current time*/}
+            {new Date().toLocaleTimeString("de-DE", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </p>
           <p className="font-extralight">
             Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}
           </p>
         </div>
-        <p className="text-xl font-bold">
-          {/*current time*/}
-          {new Date().toLocaleTimeString("de-DE", {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
-        </p>
-      </div>
+      </div> 
       <hr className="mt-10 mb-5" />
       <div className="flex items-center justify-between">
         <div>

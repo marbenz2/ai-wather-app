@@ -13,25 +13,26 @@ function TempChart({ results }: Props) {
     )
     .slice(0, 24);
 
-  const data = hourly.map((hour, i) => ({
-    time: Number(hour),
-    "UV Index": results.hourly.uv_index[i],
-    "Temperature (C)": results.hourly.temperature_2m[i],
-  }));
+  const data = hourly.map((hour, i) => {
+    const adjustedHour = i === 0 ? 0 : Number(hour);
+    return {
+      time: `${adjustedHour}:00`,
+      Temperature: results.hourly.temperature_2m[i],
+    };
+  });
 
-  const dataFormater = (number: number) => `${number}`;
+  const dataFormater = (number: number) => `${number}°C`;
 
   return (
-    <Card>
-      <Title>Temperature & UV Index</Title>
+    <Card className="p-2">
+      <Title>Temperature</Title>
       <AreaChart
         className="mt-6"
         data={data}
         showLegend
         index="time"
-        categories={["Temperature (C)", "UV Index"]}
-        colors={["yellow", "rose"]}
-        minValue={0}
+        categories={["Temperature"]}
+        colors={["yellow"]}
         valueFormatter={dataFormater}
         yAxisWidth={40}
       />

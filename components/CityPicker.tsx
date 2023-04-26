@@ -6,11 +6,12 @@ import { useState } from "react";
 import Select from "react-select";
 import { GlobeIcon } from "@heroicons/react/solid";
 
-type option = {
+type countryOption = {
   value: {
     latitude: string;
     longitude: string;
     isoCode: string;
+    name: string;
   };
   label: string;
 } | null;
@@ -22,25 +23,27 @@ type cityOption = {
     countryCode: string;
     name: string;
     stateCode: string;
+    countryName: string;
   };
   label: string;
 } | null;
 
-const options = Country.getAllCountries().map((country) => ({
+const countries = Country.getAllCountries().map((country) => ({
   value: {
     latitude: country.latitude,
     longitude: country.longitude,
     isoCode: country.isoCode,
+    name: country.name,
   },
   label: country.name,
 }));
 
 function CityPicker() {
-  const [selectedCountry, setSelectedCountry] = useState<option>(null);
+  const [selectedCountry, setSelectedCountry] = useState<countryOption>(null);
   const [selectedCity, setSelectedCity] = useState<cityOption>(null);
   const router = useRouter();
 
-  const handleSelectedCountry = (option: option) => {
+  const handleSelectedCountry = (option: countryOption) => {
     setSelectedCountry(option);
     setSelectedCity(null);
   };
@@ -48,7 +51,7 @@ function CityPicker() {
   const handleSelectedCity = (option: cityOption) => {
     setSelectedCity(option);
     router.push(
-      `/location/${option?.value.name}/${option?.value.latitude}/${option?.value.longitude}`
+      `/location/${option?.value.countryName}/${option?.value.name}/${option?.value.latitude}/${option?.value.longitude}`
     );
   };
 
@@ -63,7 +66,7 @@ function CityPicker() {
           className="text-black"
           value={selectedCountry}
           onChange={handleSelectedCountry}
-          options={options}
+          options={countries}
         />
       </div>
 
@@ -86,6 +89,7 @@ function CityPicker() {
                 countryCode: city.countryCode,
                 name: city.name,
                 stateCode: city.stateCode,
+                countryName: selectedCountry.value.name,
               },
               label: city.name,
             }))}

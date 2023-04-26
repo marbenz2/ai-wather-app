@@ -6,32 +6,35 @@ type Props = {
   results: Root;
 };
 
-function HumidityChart({ results }: Props) {
+function UvChart({ results }: Props) {
   const hourly = results?.hourly.time
     .map((time) =>
       new Date(time).toLocaleString("en-US", { hour: "numeric", hour12: false })
     )
     .slice(0, 24);
 
-  const data = hourly.map((hour, i) => ({
-    time: Number(hour),
-    "Humidity (%)": results.hourly.relativehumidity_2m[i],
-  }));
+  const data = hourly.map((hour, i) => {
+    const adjustedHour = i === 0 ? 0 : Number(hour);
+    return {
+      time: `${adjustedHour}:00`,
+      "UV Index": results.hourly.uv_index[i],
+    };
+  });
 
-  const dataFormater = (number: number) => `${number} %`;
+  const dataFormater = (number: number) => `${number}`;
 
   return (
-    <Card>
-      <Title>Humidity Levels</Title>
+    <Card className="p-2">
+      <Title>UV Index</Title>
       <AreaChart
         className="mt-6"
         data={data}
         showLegend
         index="time"
-        categories={["Humidity (%)"]}
-        colors={["teal"]}
+        categories={["UV Index"]}
+        colors={["rose"]}
         minValue={0}
-        maxValue={100}
+        maxValue={15}
         valueFormatter={dataFormater}
         yAxisWidth={40}
       />
@@ -39,4 +42,4 @@ function HumidityChart({ results }: Props) {
   );
 }
 
-export default HumidityChart;
+export default UvChart;
