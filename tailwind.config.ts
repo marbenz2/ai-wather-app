@@ -21,7 +21,7 @@ const config: Config = {
             subtle: colors.amber[500],
             DEFAULT: colors.amber[500],
             emphasis: colors.amber[400],
-            inverted: colors.amber[950],
+            inverted: colors.slate[200],
           },
           background: {
             muted: "#131A2B",
