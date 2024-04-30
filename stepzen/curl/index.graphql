@@ -6,6 +6,7 @@ type CurrentWeather {
   winddirection: Int
   windspeed: Float
 }
+
 type Daily {
   apparent_temperature_max: [Float]
   apparent_temperature_min: [Float]
@@ -18,6 +19,7 @@ type Daily {
   uv_index_max: [Float]
   weathercode: [Int]
 }
+
 type DailyUnits {
   apparent_temperature_max: String
   apparent_temperature_min: String
@@ -30,6 +32,7 @@ type DailyUnits {
   uv_index_max: String
   weathercode: String
 }
+
 type Hourly {
   apparent_temperature: [Float]
   precipitation: [Float]
@@ -45,6 +48,7 @@ type Hourly {
   uv_index_clear_sky: [Float]
   windgusts_10m: [Float]
 }
+
 type HourlyUnits {
   apparent_temperature: String
   precipitation: String
@@ -60,6 +64,7 @@ type HourlyUnits {
   uv_index_clear_sky: String
   windgusts_10m: String
 }
+
 type Root {
   current_weather: CurrentWeather
   daily: Daily
@@ -71,7 +76,7 @@ type Root {
   latitude: Float
   longitude: Float
   timezone: String
-  timezone_abbreviation: String
+  timezone_abbreviation: Int
   utc_offset_seconds: Int
 }
 

@@ -34,3 +34,38 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## StepZen
+
+This project uses StepZen to connect to a GraphQL API. To get started, you'll need to create a `.env.local` file in the root of the project with the following content:
+
+    ```bash
+    NEXT_PUBLIC_STEPZEN_API_KEY=your-api-key
+    ```
+
+You can get your API key by signing up for a free account at [StepZen](https://stepzen.com/).
+
+Install the StepZen CLI by running:
+
+    ```bash
+    npm install -g stepzen
+    ```
+
+Then run the following command to start a local StepZen dashboard:
+
+    ```bash
+    stepzen start --dashboard local
+    ```
+
+To learn more about StepZen, check out the [StepZen Documentation](https://stepzen.com/docs).
+
+## AI
+
+This project uses AI to generate content. To get started, you'll need to create a `.env.local` file in the root of the project with the following content:
+
+    ```bash
+    NEXT_PUBLIC_RAPID_API_KEY=your-api-key
+    ```
+
+You can get your API key by signing up for a free account at [RapidAPI](https://rapidapi.com/).
+The AI API used in this project is OPEN AI by PR Labs. To learn more about the API, check out the [API Documentation](https://rapidapi.com/rphrp1985/api/open-ai21/).
