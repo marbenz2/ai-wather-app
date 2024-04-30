@@ -34,7 +34,14 @@ function InformationPanel({ city, lat, long, results }: Props) {
           </p>
 
           <p className="font-thin">
-            Zeitzone: {Intl.DateTimeFormat("de-DE").resolvedOptions().timeZone}
+            Zeitzone:{" "}
+            {new Date()
+              .toLocaleString("de-DE", {
+                timeZone: "Europe/Berlin",
+                timeZoneName: "long",
+              })
+              .split(" ")
+              .pop()}
           </p>
         </div>
         <p className="text-xl">
