@@ -17,8 +17,8 @@ const config: Config = {
         tremor: {
           brand: {
             faint: "#0B1229",
-            muted: colors.amber[950],
-            subtle: colors.amber[800],
+            muted: colors.amber[500],
+            subtle: colors.amber[500],
             DEFAULT: colors.amber[500],
             emphasis: colors.amber[400],
             inverted: colors.amber[950],
@@ -39,16 +39,16 @@ const config: Config = {
             accent: colors.amber[500],
           },
           content: {
-            subtle: colors.slate[600],
+            subtle: colors.slate[500],
             DEFAULT: colors.slate[100],
-            emphasis: colors.slate[500],
+            emphasis: colors.slate[100],
             strong: colors.slate[50],
             inverted: colors.slate[950],
             accent: colors.amber[500],
           },
         },
         // dark mode
-        "dark-tremor": {
+        /*  "dark-tremor": {
           brand: {
             faint: "#0B1229",
             muted: colors.amber[500],
@@ -75,12 +75,12 @@ const config: Config = {
           content: {
             subtle: colors.slate[500],
             DEFAULT: colors.slate[100],
-            emphasis: colors.slate[500],
+            emphasis: colors.slate[100],
             strong: colors.slate[50],
             inverted: colors.slate[950],
             accent: colors.amber[500],
           },
-        },
+        }, */
       },
       boxShadow: {
         // light
