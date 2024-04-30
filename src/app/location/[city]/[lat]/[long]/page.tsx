@@ -54,9 +54,7 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
       <div className="flex-1 p-4 lg:p-10">
         <div className="flex flex-col gap-4">
           <div className="">
-            <h2 className="text-tremor-content text-xl font-bold">
-              Tagesübersicht
-            </h2>
+            <h2 className="text-tremor-content text-xl">Tagesübersicht</h2>
             <p className="text-sm text-tremor-content-subtle">
               Letztes Update:{" "}
               {new Date(results.current_weather.time).toLocaleString("de-DE")} (
