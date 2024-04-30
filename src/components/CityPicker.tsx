@@ -1,8 +1,11 @@
 "use client";
 
 import React, { useEffect, useState, useMemo } from "react"; // useMemo added here
-import { GlobeAmericasIcon } from "@heroicons/react/24/solid";
-import { TextInput } from "@tremor/react";
+import {
+  GlobeAmericasIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/solid";
+import { Button, TextInput } from "@tremor/react";
 import { City } from "country-state-city";
 import { useRouter } from "next/navigation";
 
@@ -29,6 +32,7 @@ const selectedCountry = {
 const CityPicker = () => {
   const [input, setInput] = useState("");
   const [debouncedInput, setDebouncedInput] = useState(input);
+  const [invalidInput, setInvalidInput] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -48,36 +52,23 @@ const CityPicker = () => {
     setInput(event.target.value);
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      const selectedCityOption = findCityOption(input);
-      if (selectedCityOption) {
-        handleSelectedCity(selectedCityOption);
-      } else {
-        const cities = City.getCitiesOfCountry(selectedCountry.value.isoCode);
-        const city = cities?.find(
-          (city) => city.name.toLowerCase() === input.toLowerCase()
-        );
-        if (city) {
-          handleSelectedCity({
-            value: {
-              latitude: city.latitude!,
-              longitude: city.longitude!,
-              countryCode: city.countryCode,
-              name: city.name,
-              stateCode: city.stateCode,
-            },
-            label: city.name,
-          });
-        }
-      }
-    }
-  };
-
-  const handleBlur = () => {
+  const handleSubmit = () => {
     const selectedCityOption = findCityOption(input);
     if (selectedCityOption) {
       handleSelectedCity(selectedCityOption);
+      setInvalidInput(false);
+    } else {
+      // Check if the current input exactly matches one of the suggestions in the datalist
+      const matchingCityOption = cityOptions?.find(
+        (option) => option?.label.toLowerCase() === input.toLowerCase()
+      );
+      if (matchingCityOption) {
+        handleSelectedCity(matchingCityOption);
+        setInvalidInput(false);
+      } else {
+        setInvalidInput(true);
+        setTimeout(() => setInvalidInput(false), 1000);
+      }
     }
   };
 
@@ -123,21 +114,30 @@ const CityPicker = () => {
     <div className="space-y-4">
       <div className="space-y-2">
         <div className="flex items-center space-x-2 text-tremor-content">
-          <GlobeAmericasIcon className="text-tremor-content h-5 w-5" />
+          <GlobeAmericasIcon className="h-5 w-5" />
           <label htmlFor="city">Stadt</label>
         </div>
-        <TextInput
-          spellCheck="false"
-          type="text"
-          className="text-tremor-content-inverted"
-          id="city"
-          value={input}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          onBlur={handleBlur}
-          list="cityOptions"
-          placeholder="Stadt eingeben..."
-        />
+        <div className="flex">
+          <TextInput
+            spellCheck="false"
+            type="text"
+            className={`text-tremor-content rounded-r-none ring-0 ${
+              invalidInput
+                ? "ring-1 ring-red-500 animate-[pulse_1s_ease-in-out_infinite]"
+                : ""
+            }`}
+            id="city"
+            value={input}
+            onChange={handleInputChange}
+            list="cityOptions"
+            placeholder="Stadt eingeben..."
+          />
+          <Button
+            className="rounded-l-none"
+            icon={MagnifyingGlassIcon}
+            onClick={handleSubmit}
+          />
+        </div>
         <datalist id="cityOptions">
           {cityOptions?.map((option) => (
             <option
