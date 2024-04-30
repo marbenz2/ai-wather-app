@@ -8,7 +8,7 @@ let API_URI;
 if (process.env.NODE_ENV === "development") {
   API_URI = process.env.LOCAL_URL + endpoint;
 } else {
-  API_URI = process.env.PUBLIC_URL + endpoint + "__graphql";
+  API_URI = process.env.PUBLIC_URL + endpoint + "/__graphql";
 }
 
 export const getClient = () => {
