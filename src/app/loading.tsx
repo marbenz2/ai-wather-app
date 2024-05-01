@@ -11,12 +11,12 @@ function Loading({}: Props) {
         color="yellow"
       />
       <h1
-        className={`text-6xl text-center mb-10 animate-pulse text-tremor-content`}
+        className={`text-2xl lg:text-6xl text-center mb-10 animate-pulse text-tremor-content`}
       >
         Lade Wetterdaten und KI...
       </h1>
       <h2
-        className={`text-xl text-center mb-10 animate-pulse text-tremor-content`}
+        className={`text-sm lg:text-xl font-thin text-center mb-10 animate-pulse text-tremor-content`}
       >
         Einen Moment bitte, wir bereiten die Wetterdaten für Sie auf!
       </h2>

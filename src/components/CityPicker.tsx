@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useMemo } from "react"; // useMemo added here
 import {
-  GlobeAmericasIcon,
+  GlobeEuropeAfricaIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
 import { Button, TextInput } from "@tremor/react";
@@ -114,14 +114,14 @@ const CityPicker = () => {
     <div className="space-y-4">
       <div className="space-y-2">
         <div className="flex items-center space-x-2 text-tremor-content">
-          <GlobeAmericasIcon className="h-5 w-5" />
+          <GlobeEuropeAfricaIcon className="h-5 w-5" />
           <label htmlFor="city">Stadt</label>
         </div>
         <div className="flex">
           <TextInput
             spellCheck="false"
             type="text"
-            className={`text-tremor-content rounded-r-none ring-0 ${
+            className={`text-tremor-content text-tremor-label rounded-r-none ring-0 ${
               invalidInput
                 ? "ring-1 ring-red-500 animate-[pulse_1s_ease-in-out_infinite]"
                 : ""
@@ -130,7 +130,7 @@ const CityPicker = () => {
             value={input}
             onChange={handleInputChange}
             list="cityOptions"
-            placeholder="Stadt eingeben..."
+            placeholder="Suche..."
           />
           <Button
             className="rounded-l-none"

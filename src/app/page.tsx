@@ -8,12 +8,15 @@ export default function Home() {
   return (
     <div className="min-h-screen p-10 flex flex-col justify-center items-center bg-tremor-background-strong">
       <div className="w-full max-w-2xl mx-auto">
-        <Card decoration="top" decorationColor="amber">
+        <Card
+          decoration="top"
+          decorationColor="amber"
+          className="flex flex-col gap-8"
+        >
           <Text className="!text-4xl md:!text-6xl font-thin text-center">
             KI Wetter App
           </Text>
-          <Divider className="my-10" />
-          <Card className="">
+          <Card>
             <CityPicker />
           </Card>
         </Card>
