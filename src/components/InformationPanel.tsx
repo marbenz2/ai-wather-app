@@ -34,7 +34,6 @@ function InformationPanel({ city, lat, long, results }: Props) {
           </p>
 
           <p className="font-thin">
-            Zeitzone:{" "}
             {new Date()
               .toLocaleString("de-DE", {
                 timeZone: "Europe/Berlin",
@@ -49,6 +48,7 @@ function InformationPanel({ city, lat, long, results }: Props) {
             hour: "numeric",
             minute: "numeric",
             hour12: false,
+            timeZone: "Europe/Berlin",
           })}
         </p>
       </div>
