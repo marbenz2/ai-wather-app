@@ -5,7 +5,7 @@ type Props = {};
 
 function Loading({}: Props) {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-tremor-background-strong">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-tremor-background-strong p-4">
       <SunIcon
         className="w-24 h-24 animate-bounce text-yellow-500"
         color="yellow"

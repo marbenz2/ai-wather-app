@@ -111,42 +111,40 @@ const CityPicker = () => {
   }, [debouncedInput]);
 
   return (
-    <div className="space-y-4">
-      <div className="space-y-2">
-        <div className="flex items-center space-x-2 text-tremor-content">
-          <GlobeEuropeAfricaIcon className="h-5 w-5" />
-          <label htmlFor="city">Stadt</label>
-        </div>
-        <div className="flex">
-          <TextInput
-            spellCheck="false"
-            type="text"
-            className={`text-tremor-content text-tremor-label rounded-r-none ring-0 ${
-              invalidInput
-                ? "ring-1 ring-red-500 animate-[pulse_1s_ease-in-out_infinite]"
-                : ""
-            }`}
-            id="city"
-            value={input}
-            onChange={handleInputChange}
-            list="cityOptions"
-            placeholder="Suche..."
-          />
-          <Button
-            className="rounded-l-none"
-            icon={MagnifyingGlassIcon}
-            onClick={handleSubmit}
-          />
-        </div>
-        <datalist id="cityOptions">
-          {cityOptions?.map((option) => (
-            <option
-              key={`${option?.label}-${option?.value?.stateCode}`}
-              value={option?.label}
-            />
-          ))}
-        </datalist>
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2 text-tremor-content">
+        <GlobeEuropeAfricaIcon className="h-5 w-5" />
+        <label htmlFor="city">Stadt</label>
       </div>
+      <div className="flex w-full">
+        <TextInput
+          spellCheck="false"
+          type="text"
+          className={`text-tremor-content rounded-r-none ring-0 min-w-0 ${
+            invalidInput
+              ? "ring-1 ring-red-500 animate-[pulse_1s_ease-in-out_infinite]"
+              : ""
+          }`}
+          id="city"
+          value={input}
+          onChange={handleInputChange}
+          list="cityOptions"
+          placeholder="Suche..."
+        />
+        <Button
+          className="rounded-l-none"
+          icon={MagnifyingGlassIcon}
+          onClick={handleSubmit}
+        />
+      </div>
+      <datalist id="cityOptions">
+        {cityOptions?.map((option) => (
+          <option
+            key={`${option?.label}-${option?.value?.stateCode}`}
+            value={option?.label}
+          />
+        ))}
+      </datalist>
     </div>
   );
 };
