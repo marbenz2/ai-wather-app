@@ -73,7 +73,6 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
               metric={`${results.daily.temperature_2m_min[0].toFixed(1)}°C`}
               color="green"
             />
-
             <div>
               <StatCard
                 title="UV Index"
@@ -88,19 +87,16 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
                 />
               )}
             </div>
-
-            <div className="flex space-x-3">
-              <StatCard
-                title="Windgeschwindigkeit"
-                metric={`${results.current_weather.windspeed.toFixed(1)}m/s`}
-                color="cyan"
-              />
-              <StatCard
-                title="Windrichtung"
-                metric={`${results.current_weather.winddirection.toFixed(1)}°`}
-                color="violet"
-              />
-            </div>
+            <StatCard
+              title="Windgeschwindigkeit"
+              metric={`${results.current_weather.windspeed.toFixed(1)}m/s`}
+              color="cyan"
+            />
+            <StatCard
+              title="Windrichtung"
+              metric={`${results.current_weather.winddirection.toFixed(1)}°`}
+              color="violet"
+            />
           </div>
           <hr />
           <div className="flex flex-col gap-4">
